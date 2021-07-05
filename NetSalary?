@@ -1,0 +1,52 @@
+public class NetSalary {
+    public double netSalaryCalculator (double grossSalary, boolean volunteerSoc) {
+        short age = 1989;
+        double grossSalaryWithArmyFee;
+        double netSalary;
+        int borderValue100 = 100_000; //border value for Army fee
+        int borderValue200 = 200_000; //border value for Army fee
+        int borderValue500 = 500_000; //border value for Army fee and for salary
+        int borderValue1_000 = 1_000_000; //border value for Army fee
+        int borderValue1_020 = 1_020_000; //border value for salary
+        int armyFee1500 = 1500;
+        int armyFee3000 = 3000;
+        int armyFee5500 = 5500;
+        int armyFee8500 = 8500;
+        int armyFee15_000 = 15_000;
+        int stateSubsidy32_500 = 32_500; //till 1_20_000;
+        int stateSubsidy69_500 = 69_500; // more than 1_20_000;
+        int stateSubsidy51_000 = 51_000;// more than 1_20_000, for volunteers;
+        double socialPersent3_5 = 3.5; //till 500_000;
+        double socialPersent5 = 5;//till  1_20_000, for volunteers ;
+        double socialPersent10 = 10; // more than 500_000;
+        double taxPersent22 = 22;
+        if (age > 1973) {
+            double socialPersent = grossSalary < borderValue500 ? socialPersent3_5 : socialPersent10;
+            if (socialPersent == socialPersent3_5) {
+                grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100 - grossSalary * socialPersent3_5 / 100;
+            } else if (borderValue500 < grossSalary & grossSalary < borderValue1_020) {
+                grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100 - grossSalary * socialPersent10 / 100 + stateSubsidy32_500;
+            } else
+                grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100 - stateSubsidy69_500;
+        } else {
+            grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100;
+        }
+        if (age < 1973 & volunteerSoc == true) {
+            if (grossSalary <= borderValue1_020) {
+                grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100 - grossSalary * socialPersent5 / 100;
+            } else grossSalaryWithArmyFee = grossSalary - grossSalary * taxPersent22 / 100 - stateSubsidy51_000;
+        }
+        if (grossSalary <= borderValue100) {
+            netSalary = grossSalaryWithArmyFee - armyFee1500;
+        } else if ((borderValue100 < grossSalary) & (grossSalary <= borderValue200)) {
+            netSalary = grossSalaryWithArmyFee - armyFee3000;
+        } else if ((borderValue200 < grossSalary) & (grossSalary <= borderValue500)) {
+            netSalary = grossSalaryWithArmyFee - armyFee5500;
+        } else if ((borderValue500 < grossSalary) & (grossSalary <= borderValue1_000)) {
+            netSalary = grossSalaryWithArmyFee - armyFee8500;
+        } else netSalary = grossSalaryWithArmyFee - armyFee15_000;
+        System.out.printf("Your net salary is %7.0f AMD", netSalary);//գիրք ի օգնական ։)
+
+        return netSalary;
+    }
+}
