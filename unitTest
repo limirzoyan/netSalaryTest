@@ -1,0 +1,39 @@
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+    public class NetSalaryTest {
+        NetSalary testObject;
+        @BeforeClass
+        public void setUp() {
+            testObject = new NetSalary();
+        }
+        @Test
+        public void netSalaryCalculatorTest_borderValue200_volunteerSoc() {
+            double actualNetSalary = testObject.netSalaryCalculator(150_000, true);
+            double expectedNetSalary = 108_750;
+            Assert.assertEquals(actualNetSalary, expectedNetSalary);
+        }
+        @Test
+        public void netSalaryCalculatorTest_borderValue100_volunteerSoc() {
+            double actualNetSalary = testObject.netSalaryCalculator(50_000, true);
+            double expectedNetSalary = 35_750;
+            Assert.assertEquals(actualNetSalary, expectedNetSalary);
+        }
+        @Test
+        public void netSalaryCalculatorTest_borderValue500_volunteerSoc() {
+            double actualNetSalary = testObject.netSalaryCalculator(350_000, true);
+            double expectedNetSalary = 255_250;
+            Assert.assertEquals(actualNetSalary, expectedNetSalary);
+        }
+        @Test
+        public void netSalaryCalculatorTest_borderValue1000_volunteerSoc() {
+            double actualNetSalary = testObject.netSalaryCalculator(750_000, true);
+            double expectedNetSalary = 534_000;
+            Assert.assertEquals(actualNetSalary, expectedNetSalary);
+        }
+
+
+    }
+
+
